@@ -7,7 +7,7 @@
              xmlns:custom="clr-namespace:Templates.CustomControls"
              BackgroundColor="White">
     <StackLayout>
-    <Label 
+        <Label 
             Text="LOGO" 
             FontSize="36"
             HorizontalTextAlignment="Center"
@@ -25,9 +25,6 @@
                 <ColumnDefinition Width="*"/>
                 <ColumnDefinition Width="120"/>
             </Grid.ColumnDefinitions>
-
-
-
             <custom:GradientFrame  
             StartColor="#ff5f62"
             EndColor="#f95d92"
