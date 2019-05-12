@@ -50,7 +50,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="MainActivity.cs" />
-    <Compile Include="Renderers\GradientButtonRenderer.cs" />
+    <Compile Include="Renderers\CustomButtonRenderer.cs" />
     <Compile Include="Renderers\GradientFrameRenderer.cs" />
     <Compile Include="Renderers\ImageEntryRendere.cs" />
     <Compile Include="Resources\Resource.designer.cs" />

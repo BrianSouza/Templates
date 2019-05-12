@@ -6,11 +6,19 @@ using Templates.Droid.Renderers;
 using Xamarin.Forms;
 using Xamarin.Forms.Platform.Android;
 
-[assembly: ExportRenderer(typeof(GradientFrame),typeof(GradientFrameRenderer))]
+[assembly: ExportRenderer(typeof(GradientFrame), typeof(GradientFrameRenderer))]
 namespace Templates.Droid.Renderers
 {
     public class GradientFrameRenderer : FrameRenderer
     {
+        public GradientFrameRenderer(Context context) : base(context)
+
+        {
+
+            _context = context;
+
+        }
+
         private Context _context;
 
         private Xamarin.Forms.Color StartColor { get; set; }
@@ -19,38 +27,43 @@ namespace Templates.Droid.Renderers
 
         private float _cornerRadius { get; set; }
 
-        public GradientFrameRenderer(Context context) : base(context)
-        {
-            _context = context;
-        }
+
 
         protected override void DispatchDraw(global::Android.Graphics.Canvas canvas)
+
         {
 
             #region for Horizontal Gradient
 
-            var gradient = new Android.Graphics.LinearGradient(0, 0, Width, 0,
+            LinearGradient gradient = new Android.Graphics.LinearGradient(0, 0, Width, 0,
 
             #endregion
-                
-                   this.StartColor.ToAndroid(),
 
-                   this.EndColor.ToAndroid(),
+
+
+                   StartColor.ToAndroid(),
+
+                   EndColor.ToAndroid(),
 
                    Android.Graphics.Shader.TileMode.Mirror);
-            
-            var paint = new Android.Graphics.Paint()
+
+
+
+            Paint paint = new Android.Graphics.Paint()
+
             {
-                Dither = true
+
+                Dither = true,
+
             };
 
             float rx = _context.ToPixels(_cornerRadius);
 
             float ry = _context.ToPixels(_cornerRadius);
 
-            var rect = new RectF(0, 0, Width, Height);
+            RectF rect = new RectF(0, 0, Width, Height);
 
-            var path = new Path();
+            Path path = new Path();
 
             path.AddRoundRect(rect, rx, ry, Path.Direction.Cw);
 
@@ -69,29 +82,41 @@ namespace Templates.Droid.Renderers
 
 
         protected override void OnElementChanged(ElementChangedEventArgs<Frame> e)
+
         {
+
             base.OnElementChanged(e);
-            
+
+
+
             if (e.OldElement != null || Element == null)
+
             {
+
                 return;
+
             }
 
             try
+
             {
 
-                var stack = e.NewElement as GradientFrame;
+                GradientFrame stack = e.NewElement as GradientFrame;
 
-                this.StartColor = stack.StartColor;
+                StartColor = stack.StartColor;
 
-                this.EndColor = stack.EndColor;
+                EndColor = stack.EndColor;
 
-                this._cornerRadius = stack.CornerRadius;
+                _cornerRadius = stack.CornerRadius;
+
             }
 
             catch (Exception ex)
+
             {
+
                 System.Diagnostics.Debug.WriteLine(@"ERROR:", ex.Message);
+
             }
 
         }
